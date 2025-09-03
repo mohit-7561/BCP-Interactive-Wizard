@@ -6,7 +6,7 @@ import autoprefixer from 'autoprefixer'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/BCP-Interactive-Wizard",
+  base: "/BCP-Interactive-Wizard/",
   css: {
     postcss: {
       plugins: [
