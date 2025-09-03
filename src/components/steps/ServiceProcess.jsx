@@ -99,7 +99,7 @@ const ServiceProcess = ({ formData, updateFormData }) => {
 
   return (
     <div className="space-y-4">
-      <div className="bg-gray-50 p-4 rounded-lg">
+      <div className="bg-gray-50 p-4 md:p-4 rounded-lg">
         <h3 className="text-lg font-semibold mb-2">BCP Details</h3>
         <div className="grid grid-cols-1 gap-2">
           <div>
@@ -142,7 +142,7 @@ const ServiceProcess = ({ formData, updateFormData }) => {
         </div>
       </div>
 
-      <div className="bg-gray-50 p-4 rounded-lg">
+      <div className="bg-gray-50 p-4 md:p-4 rounded-lg">
         <h3 className="text-lg font-semibold mb-2">Service</h3>
         <div className="space-y-2">
           <div>
@@ -173,7 +173,7 @@ const ServiceProcess = ({ formData, updateFormData }) => {
         </div>
       </div>
 
-      <div className="bg-gray-50 p-4 rounded-lg">
+      <div className="bg-gray-50 p-4 md:p-4 rounded-lg">
         <h3 className="text-lg font-semibold mb-2">Processes</h3>
         {processes.map((process, index) => (
           <div
@@ -346,7 +346,7 @@ const ServiceProcess = ({ formData, updateFormData }) => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <h4 className="text-sm font-medium text-gray-700 mb-2">
                     Primary Owner

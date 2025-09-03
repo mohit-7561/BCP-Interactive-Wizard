@@ -69,9 +69,9 @@ const BusinessImpact = ({ formData, updateFormData }) => {
         </button>
       </div>
 
-      <div className="bg-gray-50 p-4 rounded-lg">
+      <div className="bg-gray-50 p-4 md:p-4 rounded-lg">
         <h3 className="text-lg font-semibold mb-2">Criticality (MTD)</h3>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Time Unit
@@ -101,7 +101,7 @@ const BusinessImpact = ({ formData, updateFormData }) => {
         </div>
       </div>
 
-      <div className="bg-gray-50 p-4 rounded-lg">
+      <div className="bg-gray-50 p-4 md:p-4 rounded-lg">
         <h3 className="text-lg font-semibold mb-2">Headcount Requirement</h3>
         <p className="text-sm text-gray-600 mb-2">
           Specify the minimum headcount required for each process at each site
@@ -120,7 +120,7 @@ const BusinessImpact = ({ formData, updateFormData }) => {
               if (!site) return null;
 
               return (
-                <div key={`${processIndex}-${siteId}`} className="mb-4 ml-4">
+                <div key={`${processIndex}-${siteId}`} className="mb-4 ml-2 md:ml-4">
                   <label className="block text-sm font-medium text-gray-700">
                     {site.name}
                   </label>
@@ -169,14 +169,14 @@ const BusinessImpact = ({ formData, updateFormData }) => {
         )}
       </div>
 
-      <div className="bg-gray-50 p-4 rounded-lg">
+      <div className="bg-gray-50 p-4 md:p-4 rounded-lg">
         <h3 className="text-lg font-semibold mb-2">Dependencies</h3>
         {formData.biaDetails.dependencies.map((dependency, index) => (
           <div
             key={index}
             className="mb-2 p-3 border border-gray-200 rounded-lg"
           >
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Type

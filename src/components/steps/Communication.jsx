@@ -24,7 +24,7 @@ const Communication = ({ formData, updateFormData }) => {
 
   return (
     <div className="space-y-3">
-      <div className="bg-gray-50 p-4 rounded-lg">
+      <div className="bg-gray-50 p-4 md:p-4 rounded-lg">
         <h3 className="text-lg font-semibold mb-2">Disruption Notifications</h3>
         <p className="text-gray-600 mb-2">
           Who should be notified if this service is disrupted?

@@ -134,16 +134,16 @@ const BCPWizard = () => {
       <div className="max-w-7xl mx-auto px-4">
         <h1 className="text-2xl font-semibold mb-6">BCP Interactive Wizard</h1>
 
-        <div className="flex gap-6">
+        <div className="flex flex-col lg:flex-row gap-6">
           {/* Left Panel */}
-          <div className="flex-1 bg-white rounded-lg p-6 shadow-sm">
+          <div className="flex-1 bg-white rounded-lg p-4 md:p-6 shadow-sm">
             <div className="mb-6">
               <h2 className="text-lg font-medium">Step {currentStep} of 4</h2>
             </div>
 
             {renderStep()}
 
-            <div className="mt-8 flex justify-between">
+            <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-0 sm:justify-between">
               {currentStep > 1 && (
                 <button
                   onClick={handleBack}
@@ -155,14 +155,14 @@ const BCPWizard = () => {
               {currentStep < 4 ? (
                 <button
                   onClick={handleNext}
-                  className="px-6 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 ml-auto"
+                  className="px-6 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 sm:ml-auto"
                 >
                   Next
                 </button>
               ) : (
                 <button
                   onClick={handleSubmit}
-                  className="px-6 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 ml-auto"
+                  className="px-6 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 sm:ml-auto"
                 >
                   Submit
                 </button>
@@ -171,7 +171,7 @@ const BCPWizard = () => {
           </div>
 
           {/* Right Panel */}
-          <div className="w-96 bg-white rounded-lg p-6 shadow-sm">
+          <div className="w-full lg:w-96 bg-white rounded-lg p-4 md:p-6 shadow-sm">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-lg font-medium">Your Plan So Far</h2>
               <button className="text-blue-600 hover:text-blue-700 flex items-center gap-1">
@@ -362,8 +362,8 @@ const BCPWizard = () => {
                 ✕
               </button>
             </div>
-            <div className="p-6 max-h-[70vh] overflow-auto">
-              <pre className="text-sm bg-gray-50 p-4 rounded border border-gray-200 overflow-auto">
+            <div className="p-4 md:p-6 max-h-[70vh] overflow-auto">
+              <pre className="text-xs md:text-sm bg-gray-50 p-3 md:p-4 rounded border border-gray-200 overflow-auto">
 {JSON.stringify(formData, null, 2)}
               </pre>
             </div>
@@ -372,7 +372,7 @@ const BCPWizard = () => {
                 onClick={() => {
                   navigator.clipboard?.writeText(JSON.stringify(formData, null, 2));
                 }}
-                className="px-4 py-2 bg-gray-100 text-gray-800 rounded hover:bg-gray-200"
+                className="px-3 md:px-4 py-2 bg-gray-100 text-gray-800 rounded hover:bg-gray-200"
               >
                 Copy JSON
               </button>
@@ -386,7 +386,7 @@ const BCPWizard = () => {
                   a.click();
                   URL.revokeObjectURL(url);
                 }}
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                className="px-3 md:px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
               >
                 Download JSON
               </button>
