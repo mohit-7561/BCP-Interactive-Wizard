@@ -6,7 +6,8 @@ import autoprefixer from 'autoprefixer'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/BCP-Interactive-Wizard/",
+  // Use root base on Vercel, subpath base on GitHub Pages
+  base: process.env.VERCEL === '1' ? '/' : '/BCP-Interactive-Wizard/',
   css: {
     postcss: {
       plugins: [
