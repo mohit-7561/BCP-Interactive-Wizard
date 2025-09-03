@@ -1,46 +1,74 @@
-# Assignment: BCP Interactive Wizard – Interview Task
+# BCP Interactive Wizard – Application Flow
 
-## Objective:
-Design and structure a simple, interactive wizard for capturing Business Continuity Planning (BCP) details. The flow must be user-friendly, with clear questions, optional/mandatory indicators, and the ability to save or skip certain steps where relevant.
+## Overview
+This prototype guides users through creating a Business Continuity Plan (BCP) across four steps: Service & Processes, Business Impact (BIA), Communication, and Risk. A right-side summary panel shows "Your Plan So Far" and updates live as users enter data. On Submit, a modal displays the collected data with options to copy or download as JSON.
 
----
+## Step-by-step Flow
 
-## Step 1 – Service & Process Capture
+### Step 1 – Service & Process Capture
 - BCP Details
-  - Name of BCP (Mandatory) – Input box
-  - Business Unit, Sub-Business Unit (Optional – not mandatory in DB) – Input box
+  - Name of BCP (mandatory)
+  - Business Unit (optional)
+  - Sub-Business Unit (optional)
 - Service
-  - What’s the name of the service you want to protect? (Mandatory) – Input box
-  - Description (Optional) – Text area  
-  - Note: One service per BCP
-- Process – “What are the main processes this service depends on?” (+ Add Process dynamic input box)
-- Sites – Multi-select dropdown from system locations OR add new site. Multiple sites can be linked per process
-- Process Owner – Input field from BRT roster (Name + Email), capture Primary and Backup owners
+  - Service Name (mandatory)
+  - Description (optional)
+- Processes
+  - Add Process dynamically
+  - Select Sites (multi-select from system locations; can add a new site)
+  - Owners (Primary and Backup, Name + Email)
+- Validation
+  - Cannot proceed to next step unless BCP Name and Service Name are provided
 
----
+### Step 2 – Business Impact Analysis (BIA)
+- Criticality (MTD)
+  - Time unit: Hours/Days
+  - Value: numeric input
+- Headcount Requirement
+  - For each process-site pair, specify minimum staff required
+- Dependencies
+  - Add multiple dependencies with Type (Upstream, IT, Equipment, External) + Description
+- Skip
+  - User can choose to skip this step and return later
 
-## Step 2 – Business Impact Analysis (BIA)
-- Criticality (MTD) – “When does this process need to be restored if disrupted?” Options: Hours/Days + Input field
-- Headcount Requirement – “How many people are required at a minimum if the site is disrupted?” Input field (site + process pair → headcount mapping)
-- Dependencies – “Are there any key systems, vendors, or other processes this depends on?” Dropdown: Upstream, IT, Equipment, External + Input box. Allow adding new processes
-- Provide Skip Step option
+### Step 3 – Communication
+- Disruption Notifications
+  - Add multiple entries (Type: individual/group/distribution)
+  - Name and Email fields per entry
+  - Edit and remove entries supported
 
----
+### Step 4 – Risk (Optional)
+- Risk Assessment
+  - Free-text area for major risks
+- Skip
+  - User can skip this step and return later
 
-## Step 3 – Communication
-- Disruption Notifications – “Who should be notified if this service is disrupted?” Input fields for Name + Email. Allow adding individuals, groups, or distribution lists
+## Right Panel – Your Plan So Far
+- Live summary of entered data across all steps
+- Service, processes with sites and owners, criticality, dependencies, risks, and notifications
+- Sites are displayed as human-readable names (not IDs)
 
----
+## Submission
+- Submit button (visible on Step 4) validates mandatory fields from Step 1
+- On successful submit, a modal opens with a JSON summary of all data
+  - Copy JSON to clipboard
+  - Download JSON as a file named after the BCP
 
-## Step 4 – Risk (Optional)
-- Any major risks to note? (e.g., power outage, cyber incident, supply issue) – Text area
-- Option to Skip Step
+## Data Model (high-level)
+- bcpDetails: { name, businessUnit, subBusinessUnit }
+- service: { name, description }
+- processes: [
+  { name, sites: [siteId], owner: { primary: { name, email }, backup: { name, email } } }
+]
+- biaDetails: {
+  criticality: { timeUnit, value },
+  headcount: { [processIndex]: { [siteId]: number } },
+  dependencies: [ { type, description } ]
+}
+- notifications: [ { type, name, email } ]
+- risks: string
 
----
-
-## Notes for Candidate
-- Clearly mark mandatory vs. optional fields
-- Use dynamic input options where users can add multiple values
-- Provide Skip Step functionality where required
-- Ensure DB integration points are identified (BCP name, service, roster owners, system sites, dependencies)
-- Final submission can be in the form of wireframes (Figma/Sketch/Hand-drawn) OR prototype (React/Angular/Tailwind)
+## Notes
+- Mandatory fields are marked with an asterisk (*) where applicable
+- Skipping is supported in BIA and Risk steps
+- No backend integration is included (prototype). Data is shown in the submit modal and can be exported as JSON
